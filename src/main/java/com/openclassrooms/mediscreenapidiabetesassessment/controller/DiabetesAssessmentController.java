@@ -8,40 +8,36 @@ import com.openclassrooms.mediscreenapidiabetesassessment.service.AssessmentServ
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/apiDiabeteAssessment")
 public class DiabetesAssessmentController {
     @Autowired
     private AssessmentService AssessmentService;
+    @Autowired
     private MicroservicePatientsProxy patientsProxy;
 
-    public void mediscreenUiController(MicroservicePatientsProxy patientsProxy){
-        this.patientsProxy = patientsProxy;
-    }
-
+    @Autowired
     private MicroserviceNotesProxy notesProxy;
 
-    public void mediscreenUiController(MicroserviceNotesProxy notesProxy){
-        this.notesProxy = notesProxy;
-    }
 
 
-    @GetMapping("/evaluer-risque/{patientId}")
+
+    @GetMapping("/evaluerRisque/{patientId}")
     public String evaluerRisque(@PathVariable("patientId") Long patientId) {
         // Récupérer les informations du patient à partir de l'API "apiPatient"
         Patient patient = patientsProxy.recupererUnPatient(patientId);
 
         // Récupérer les notes associées au patient à partir de l'API "apiNotes"
-        List<Note> notes = notesProxy.listDesNotes(patientId);
+        List<Note> notes = notesProxy.getNotesByPatientId(patientId);
 
-        // Évaluer le risque en utilisant RiskEvaluator
-        String risk = AssessmentService.evaluateRisk(patient,notes);
 
         // Retourner le résultat
-        return risk;
+        return AssessmentService.evaluateRisk(patient,notes);
     }
 
 

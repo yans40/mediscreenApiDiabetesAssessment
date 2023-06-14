@@ -9,9 +9,7 @@ import java.util.List;
 
 @FeignClient(name = "microservice-notes", url="localhost:8082/apiNote" )
 public interface MicroserviceNotesProxy {
-    @GetMapping(value = "/notes")
-    List<Note> listDesNotes();
 
-    @GetMapping("/notes/{id}")
-    List<Note> listDesNotes(@PathVariable("id") Long id);// a implementer dans apiNotes
+    @GetMapping("/notesList/{patientId}")
+    List <Note> getNotesByPatientId(@PathVariable Long patientId);
 }
