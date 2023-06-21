@@ -1,6 +1,5 @@
 package com.openclassrooms.mediscreenapidiabetesassessment.service;
 
-import com.openclassrooms.mediscreenapidiabetesassessment.constant.Genre;
 import com.openclassrooms.mediscreenapidiabetesassessment.constant.MotDeclencheur;
 import com.openclassrooms.mediscreenapidiabetesassessment.model.Note;
 import com.openclassrooms.mediscreenapidiabetesassessment.model.Patient;

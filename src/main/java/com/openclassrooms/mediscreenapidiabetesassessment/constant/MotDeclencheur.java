@@ -1,17 +1,17 @@
 package com.openclassrooms.mediscreenapidiabetesassessment.constant;
 
 public enum MotDeclencheur {
-    MOT_DECLENCHEUR_1("Hémoglobine A1C"),
-    MOT_DECLENCHEUR_2("Microalbumine"),
-    MOT_DECLENCHEUR_3("Taille"),
-    MOT_DECLENCHEUR_4("Poids"),
-    MOT_DECLENCHEUR_5("Fumeur"),
-    MOT_DECLENCHEUR_6("Anormal"),
-    MOT_DECLENCHEUR_7("Cholestérol"),
-    MOT_DECLENCHEUR_8("Vertige"),
-    MOT_DECLENCHEUR_9("Rechute"),
-    MOT_DECLENCHEUR_10("Réaction"),
-    MOT_DECLENCHEUR_11("Anticorps");
+    MOT_DECLENCHEUR_1("hémoglobine A1C"),
+    MOT_DECLENCHEUR_2("microalbumine"),
+    MOT_DECLENCHEUR_3("taille"),
+    MOT_DECLENCHEUR_4("poids"),
+    MOT_DECLENCHEUR_5("fumeur"),
+    MOT_DECLENCHEUR_6("anormal"),
+    MOT_DECLENCHEUR_7("cholestérol"),
+    MOT_DECLENCHEUR_8("vertige"),
+    MOT_DECLENCHEUR_9("rechute"),
+    MOT_DECLENCHEUR_10("réaction"),
+    MOT_DECLENCHEUR_11("anticorps");
 
     private String value;
 
