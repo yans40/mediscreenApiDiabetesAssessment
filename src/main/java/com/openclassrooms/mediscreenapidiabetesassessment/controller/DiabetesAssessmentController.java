@@ -14,20 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/apiDiabeteAssessment")
+@RequestMapping("/apidiabete")
 public class DiabetesAssessmentController {
     @Autowired
-    private AssessmentService AssessmentService;
+    private AssessmentService assessmentService;
     @Autowired
     private MicroservicePatientsProxy patientsProxy;
 
     @Autowired
     private MicroserviceNotesProxy notesProxy;
 
+    @GetMapping("/helloworld")
+    public String test() {
+        return "hello world";
+    }
 
 
-
-    @GetMapping("/evaluerRisque/{patientId}")
+    @GetMapping("/evaluerrisque/{patientId}")
     public String evaluerRisque(@PathVariable("patientId") Long patientId) {
         // Récupérer les informations du patient à partir de l'API "apiPatient"
         Patient patient = patientsProxy.recupererUnPatient(patientId);
@@ -35,9 +38,8 @@ public class DiabetesAssessmentController {
         // Récupérer les notes associées au patient à partir de l'API "apiNotes"
         List<Note> notes = notesProxy.getNotesByPatientId(patientId);
 
-
         // Retourner le résultat
-        return AssessmentService.evaluateRisk(patient,notes);
+        return assessmentService.evaluateRisk(patient, notes);
     }
 
 
