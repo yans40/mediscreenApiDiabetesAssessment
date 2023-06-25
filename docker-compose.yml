@@ -4,7 +4,11 @@ services:
     container_name: apidiabeteassessment
     build: .
     ports:
-      - "21004:8083"
+      - "31000:8083"
+    depends_on:
+      - apipatient
+      - apinotepatient
+
     environment:
       API_PATIENT_URL: "http://apipatient:8081"
       API_NOTE_URL: "http://apinotepatient:8082"
@@ -17,7 +21,7 @@ services:
     container_name: apipatient
     build: ../Mediscreen/.
     ports:
-      - "21002:8081"
+      - "21000:8081"
     depends_on:
       - mysql
     environment:
@@ -31,8 +35,9 @@ services:
     container_name: apinotepatient
     build: ../mediscreenapinotes/.
     ports:
-      - "21000:8082"
+      - "21002:8082"
     depends_on:
       - mongodb
     environment:
       spring.data.mongodb.uri: "mongodb://mongodb:27017/Notes"
+

@@ -16,5 +16,4 @@ public class Note {
     private Long patientId;
     private String patient;
     private String observation;
-
 }
