@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "microservice-patients", url="localhost:8081/apipatient" )
+@FeignClient(name = "Mediscreen", url="localhost:8081/apipatient", decode404 = true )
 public interface MicroservicePatientsProxy {
     @GetMapping(value = "/patients")
     List<Patient> listDesPatients();
 
     @GetMapping("/patients/{id}")
-    Patient recupererUnPatient(@PathVariable("id") Long id);
+    Patient recupererUnPatient(@PathVariable(name="id") Long id);
 }
