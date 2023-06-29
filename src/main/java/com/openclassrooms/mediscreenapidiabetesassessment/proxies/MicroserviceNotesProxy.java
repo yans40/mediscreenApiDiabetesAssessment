@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "microservice-notes", url="localhost:8082/apiNote" )
+@FeignClient(name = "microservice-notes", url="${API_NOTE_URL}" )
 public interface MicroserviceNotesProxy {
 
-    @GetMapping("/notesList/{patientId}")
+    @GetMapping(value = "/apiNote/notesList/{patientId}")
     List<Note> getNotesByPatientId(@PathVariable Long patientId);
 }

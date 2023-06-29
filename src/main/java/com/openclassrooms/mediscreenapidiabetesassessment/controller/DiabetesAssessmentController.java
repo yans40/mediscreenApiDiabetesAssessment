@@ -19,13 +19,15 @@ import java.util.List;
 @RequestMapping("/apidiabete")
 @Slf4j
 public class DiabetesAssessmentController {
-    @Autowired
-    private AssessmentService assessmentService;
-    @Autowired
-    private MicroservicePatientsProxy patientsProxy;
+    private final AssessmentService assessmentService;
+    private final MicroservicePatientsProxy patientsProxy;
 
-    @Autowired
-    private MicroserviceNotesProxy notesProxy;
+    private final MicroserviceNotesProxy notesProxy;
+    public DiabetesAssessmentController(AssessmentService assessmentService, MicroservicePatientsProxy patientsProxy, MicroserviceNotesProxy notesProxy) {
+        this.assessmentService = assessmentService;
+        this.patientsProxy = patientsProxy;
+        this.notesProxy = notesProxy;
+    }
 
     @GetMapping("/helloworld")
     public String test() {
@@ -37,7 +39,7 @@ public class DiabetesAssessmentController {
     public String evaluerRisque(@PathVariable("patientId") Long patientId) {
         log.info("Début de l'évaluation");
 //        try {
-            // Récupérer les informations du patient à partir de l'API "apiPatient"
+            // Récupérer le patient à partir de l'API "apiPatient"
             Patient patient = patientsProxy.recupererUnPatient(patientId);
             // Récupérer les notes associées au patient à partir de l'API "apiNotes"
             List<Note> notes = notesProxy.getNotesByPatientId(patientId);

@@ -12,6 +12,6 @@ import lombok.Setter;
 public class Note {
     private String id;
     private Long patientId;
-    private String patient;
+//    private String patient;
     private String observation;
 }
