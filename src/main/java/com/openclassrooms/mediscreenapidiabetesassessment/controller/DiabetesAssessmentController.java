@@ -29,25 +29,19 @@ public class DiabetesAssessmentController {
         this.notesProxy = notesProxy;
     }
 
-    @GetMapping("/helloworld")
-    public String test() {
-        return "hello world";
-    }
-
-
     @GetMapping("/evaluerrisque/{patientId}")
     public String evaluerRisque(@PathVariable("patientId") Long patientId) {
         log.info("Début de l'évaluation");
-//        try {
+        try {
             // Récupérer le patient à partir de l'API "apiPatient"
             Patient patient = patientsProxy.recupererUnPatient(patientId);
             // Récupérer les notes associées au patient à partir de l'API "apiNotes"
             List<Note> notes = notesProxy.getNotesByPatientId(patientId);
             // Retourner le résultat
             return assessmentService.evaluateRisk(patient, notes);
-//        } catch (FeignException e) {
-//            return "Erreur lors de la récupération des informations du patient : " + e.getMessage();
-//        }
+        } catch (FeignException e) {
+            return "Erreur lors de la récupération des informations nécessaires au calcul du risque de diabète : " + e.getMessage();
+        }
     }
 
 
